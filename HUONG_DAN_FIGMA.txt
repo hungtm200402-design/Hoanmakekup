@@ -1,0 +1,30 @@
+BỘ GIAO DIỆN WEBSITE MAKEUP & MỸ PHẨM – NHẬP VÀO FIGMA
+
+File chính:
+- Beauty_Website_Figma_Import.svg: kéo thẳng vào một trang Figma mới.
+- 00_tong_hop_giao_dien.png: ảnh thiết kế tổng hợp ban đầu.
+- 01–06: từng màn hình đã tách riêng.
+
+Cách dùng:
+1. Mở Figma và tạo Design file mới.
+2. Kéo Beauty_Website_Figma_Import.svg vào vùng làm việc.
+3. Các màn hình sẽ nằm chung trên một board để đối chiếu.
+4. Có thể dùng từng ảnh PNG làm nền tham chiếu rồi dựng lại component, Auto Layout và prototype.
+5. Do thiết kế ban đầu được tạo dưới dạng ảnh, nội dung trong SVG vẫn là hình ảnh và chưa phải layer UI chỉnh sửa từng chữ/nút.
+
+Bảng màu tham chiếu:
+- Đỏ hồng chủ đạo: #D92E55
+- Hồng phấn nền: #FCECED
+- Hồng rất nhạt: #FFF7F7
+- Trắng: #FFFFFF
+- Chữ đen: #222222
+- Chữ phụ: #6F6767
+- Viền: #EAD9DA
+
+Nhóm màn hình:
+- Trang chủ Desktop
+- Đặt lịch Makeup Desktop
+- Chi tiết sản phẩm Desktop
+- Admin Dashboard Desktop
+- Trang chủ Mobile
+- Lịch hẹn Mobile

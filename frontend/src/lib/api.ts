@@ -23,11 +23,7 @@ export function formatVnd(value: number) {
 }
 
 export function productBadge(product: ApiProduct) {
-  if (!product.salePrice || product.salePrice >= product.price) {
-    return product.slug === "perfect-diary" ? "NEW" : undefined;
-  }
-
-  return `-${Math.round(((product.price - product.salePrice) / product.price) * 100)}%`;
+  return product.slug === "perfect-diary" ? "NEW" : undefined;
 }
 
 export async function fetchProducts() {

@@ -26,20 +26,9 @@ export default function AccountPage() {
     <>
       <Header />
       <main className="bg-white">
-        <section className="relative overflow-hidden bg-gradient-to-r from-white via-[#fff4f7] to-white">
-          <div className="container-beauty relative min-h-[178px]">
-            <img src="/images/products/hoan_doan_mau_make_san_pham_va_banner/02_anh_san_pham/06_home_bo_co_trang_diem_cao_cap.png" alt="" className="absolute -left-10 top-8 h-36 w-36 rotate-[-18deg] object-contain opacity-70 max-[760px]:hidden" />
-            <img src="/images/products/hoan_doan_mau_make_san_pham_va_banner/02_anh_san_pham/05_home_son_li_hoan_doan.png" alt="" className="absolute -right-6 top-5 h-40 w-40 rotate-12 object-contain opacity-70 max-[760px]:hidden" />
-            <div className="grid min-h-[178px] place-items-center text-center">
-              <div>
-                <h1 className="font-serif text-[46px] font-bold uppercase tracking-wide text-brand-red max-[640px]:text-[34px]">Tài khoản của tôi</h1>
-                <div className="mx-auto mt-5 flex w-[330px] max-w-full items-center justify-center gap-4 text-[#d9a269]">
-                  <span className="h-px flex-1 bg-[#d9a269]" />
-                  <span className="text-[20px]">♕</span>
-                  <span className="h-px flex-1 bg-[#d9a269]" />
-                </div>
-              </div>
-            </div>
+        <section className="w-full px-4 pt-4">
+          <div className="mx-auto w-full max-w-[1600px] overflow-hidden rounded-[32px] shadow-[0_14px_34px_rgba(217,46,85,0.08)]">
+            <img src="/images/products/6_banner_net_hon/05_banner_tai_khoan.png" alt="Tài khoản của tôi" className="block h-auto w-full" />
           </div>
         </section>
 

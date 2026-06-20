@@ -15,8 +15,8 @@ const config: Config = {
         }
       },
       fontFamily: {
-        sans: ["Arial", "Helvetica", "sans-serif"],
-        serif: ["Georgia", "Times New Roman", "serif"]
+        sans: ["Segoe UI Variable Text", "Segoe UI", "Arial", "Helvetica", "sans-serif"],
+        serif: ["Palatino Linotype", "Book Antiqua", "Georgia", "Times New Roman", "serif"]
       },
       boxShadow: {
         beauty: "0 18px 40px rgba(142, 49, 72, 0.12)"

@@ -22,7 +22,10 @@ builder.Services.AddDataProtection()
 
 builder.Services.AddDbContext<BeautyDbContext>(options =>
 {
-    if (builder.Configuration.GetValue<bool>("UseInMemoryDatabase"))
+    var useInMemoryDatabase = builder.Configuration.GetValue<bool>("UseInMemoryDatabase")
+        || string.IsNullOrWhiteSpace(builder.Configuration.GetConnectionString("DefaultConnection"));
+
+    if (useInMemoryDatabase)
     {
         options.UseInMemoryDatabase("BeautyDev");
         return;

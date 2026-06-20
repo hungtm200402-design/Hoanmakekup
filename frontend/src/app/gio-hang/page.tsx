@@ -6,8 +6,14 @@ export default function CartPage() {
   return (
     <>
       <Header />
-      <main className="container-beauty py-12">
-        <h1 className="section-title">Giỏ hàng</h1>
+      <main className="pb-12">
+        <section className="w-full px-4 pt-4">
+          <div className="mx-auto w-full max-w-[1600px] overflow-hidden rounded-[32px] shadow-[0_14px_34px_rgba(217,46,85,0.08)]">
+            <img src="/images/products/6_banner_net_hon/06_banner_gio_hang.png" alt="Giỏ hàng" className="block h-auto w-full" />
+          </div>
+        </section>
+
+        <section className="container-beauty pt-12">
         <div className="mt-9 grid grid-cols-[1fr_360px] gap-8 max-[900px]:grid-cols-1">
           <article className="grid grid-cols-[150px_1fr] gap-6 rounded border border-brand-line p-5 max-[520px]:grid-cols-1">
             <img className="h-[150px] w-[150px] rounded bg-brand-soft object-contain p-3" src="/images/products/hoan_doan_mau_make_san_pham_va_banner/02_anh_san_pham/18_gio_hang_son_li_peach_coral.png" alt="Son Black Rouge Air Fit" />
@@ -28,6 +34,7 @@ export default function CartPage() {
             <Link href="/thanh-toan" className="btn-red mt-7 w-full">Thanh toán</Link>
           </aside>
         </div>
+        </section>
       </main>
       <Footer />
     </>

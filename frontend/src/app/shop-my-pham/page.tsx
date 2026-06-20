@@ -19,17 +19,14 @@ export default function ShopPage() {
   return (
     <>
       <Header />
-      <main className="container-beauty pb-12">
-        <section className="relative mb-7 overflow-hidden rounded-[10px] border border-[#f7d8df] bg-gradient-to-r from-white via-[#fff3f6] to-[#ffdce5] px-10 py-14 max-[640px]:px-6">
-          <div className="relative z-10 max-w-[420px]">
-            <h1 className="text-[38px] font-extrabold uppercase text-brand-red max-[640px]:text-[30px]">Shop mỹ phẩm</h1>
-            <p className="mt-4 text-[16px] leading-8 text-brand-ink">Khám phá các sản phẩm làm đẹp chính hãng chất lượng cao từ các thương hiệu uy tín.</p>
+      <main className="pb-12">
+        <section className="w-full px-4 pt-4">
+          <div className="mx-auto w-full max-w-[1600px] overflow-hidden rounded-[32px] shadow-[0_14px_34px_rgba(217,46,85,0.08)]">
+            <img src="/images/products/6_banner_net_hon/02_banner_san_pham.png" alt="Shop mỹ phẩm" className="block h-auto w-full" />
           </div>
-          <div className="absolute right-10 top-1/2 h-[170px] w-[420px] -translate-y-1/2 rounded-full bg-white/60 blur-2xl" />
-          <img src="/images/products/hoan_doan_mau_make_san_pham_va_banner/02_anh_san_pham/09_shop_phan_phu_infallible.png" alt="" className="absolute right-[17%] top-7 h-[210px] w-[210px] rotate-[-10deg] object-contain opacity-95 max-[820px]:hidden" />
-          <img src="/images/products/hoan_doan_mau_make_san_pham_va_banner/02_anh_san_pham/08_shop_son_mac_matte_lipstick.png" alt="" className="absolute right-[5%] top-4 h-[230px] w-[230px] rotate-12 object-contain opacity-95 max-[820px]:hidden" />
         </section>
 
+        <section className="container-beauty py-8">
         <div className="grid grid-cols-[270px_1fr] gap-8 max-[980px]:grid-cols-1">
           <aside className="rounded-[10px] border border-[#f5cfd8] bg-white p-5">
             <h2 className="text-[15px] font-extrabold uppercase text-brand-red">Danh mục sản phẩm</h2>
@@ -85,6 +82,7 @@ export default function ShopPage() {
             </div>
           </section>
         </div>
+        </section>
       </main>
       <Footer />
     </>

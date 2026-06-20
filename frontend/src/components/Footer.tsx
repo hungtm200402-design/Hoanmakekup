@@ -16,8 +16,8 @@ const socials = [
 
 export function Footer() {
   return (
-    <footer className="bg-white pb-8">
-      <div className="container-beauty rounded-[10px] border border-[#f5cfd8] bg-white px-8 py-7 max-[560px]:px-4">
+    <footer className="w-full bg-[linear-gradient(180deg,#ffffff_0%,#fff7f8_100%)] px-4 pb-8 pt-4">
+      <div className="mx-auto w-full max-w-[1600px] rounded-[18px] border border-[#f5cfd8] bg-white px-8 py-7 shadow-[0_16px_38px_rgba(217,46,85,0.08)] max-[560px]:px-4">
         <div className="grid grid-cols-4 gap-0 border-b border-brand-line pb-7 max-[900px]:grid-cols-2 max-[560px]:grid-cols-1">
           {benefits.map((item) => (
             <div key={item.title} className="flex items-center justify-center gap-5 border-r border-brand-line px-6 last:border-r-0 max-[560px]:justify-start max-[560px]:border-b max-[560px]:border-r-0 max-[560px]:py-4">

@@ -6,13 +6,13 @@ import { useState } from "react";
 import { MenuIcon } from "./Icons";
 import { navItems } from "@/lib/data";
 
-export function Header() {
+export function Header({ embedded = false, bare = false }: { embedded?: boolean; bare?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="relative z-50 bg-white pb-5 pt-5 max-[760px]:pb-3 max-[760px]:pt-3">
-      <div className="container-beauty rounded-[22px] border border-[#f4ccd5] bg-white/95 px-8 shadow-[0_12px_32px_rgba(217,46,85,0.13)] max-[760px]:rounded-2xl max-[760px]:px-4">
+    <header className={`${embedded ? "absolute left-0 top-0 z-50 w-full px-[1.8%] pt-[1.35%]" : "relative z-50 bg-white pb-5 pt-5 max-[760px]:pb-3 max-[760px]:pt-3"}`}>
+      <div className={`${embedded ? "mx-auto w-full max-w-[1840px]" : "container-beauty"} ${bare ? "border border-transparent bg-transparent shadow-none" : "border border-[#f4ccd5] bg-white/95 shadow-[0_12px_32px_rgba(217,46,85,0.13)]"} rounded-[22px] px-8 max-[760px]:rounded-2xl max-[760px]:px-4`}>
         <div className="flex min-h-[124px] items-center justify-between gap-7 max-[760px]:min-h-[74px]">
           <Link href="/" className="flex w-[286px] shrink-0 justify-center border-r border-brand-line pr-8 max-[1020px]:w-[230px] max-[760px]:w-[170px] max-[760px]:border-r-0 max-[760px]:pr-0" aria-label="Hoàn Doãn Beauty & Academy">
             <img

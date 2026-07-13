@@ -103,3 +103,76 @@ public sealed class AiDraft
     public Guid CreatedByUserId { get; set; }
     public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
 }
+
+public sealed class TrustedSourceDomain
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Domain { get; set; } = "";
+    public string Brand { get; set; } = "";
+    public string SourceType { get; set; } = "";
+    public bool Enabled { get; set; } = true;
+    public DateTimeOffset? LastIndexedAt { get; set; }
+    public string LastStatus { get; set; } = "pending";
+    public string LastError { get; set; } = "";
+}
+
+public sealed class TrustedProduct
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Brand { get; set; } = "";
+    public string ProductName { get; set; } = "";
+    public string ProductLine { get; set; } = "";
+    public string Category { get; set; } = "";
+    public string Variant { get; set; } = "";
+    public string Shade { get; set; } = "";
+    public string Size { get; set; } = "";
+    public string ItemForm { get; set; } = "";
+    public string Description { get; set; } = "";
+    public string Ingredients { get; set; } = "";
+    public string Usage { get; set; } = "";
+    public string CanonicalUrl { get; set; } = "";
+    public string SourceDomain { get; set; } = "";
+    public string SourceType { get; set; } = "";
+    public string NormalizedKey { get; set; } = "";
+    public DateTimeOffset LastIndexedAt { get; set; } = DateTimeOffset.UtcNow;
+    public List<TrustedProductImage> Images { get; set; } = new();
+}
+
+public sealed class TrustedProductImage
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid TrustedProductId { get; set; }
+    public TrustedProduct? Product { get; set; }
+    public string ImageUrl { get; set; } = "";
+    public string Fingerprint { get; set; } = "";
+    public DateTimeOffset LastIndexedAt { get; set; } = DateTimeOffset.UtcNow;
+}
+
+public sealed class IndexingJob
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Scope { get; set; } = "";
+    public string Status { get; set; } = "queued";
+    public int DomainsScanned { get; set; }
+    public int ProductsIndexed { get; set; }
+    public int ImagesIndexed { get; set; }
+    public string Error { get; set; } = "";
+    public DateTimeOffset StartedAt { get; set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset? FinishedAt { get; set; }
+}
+
+public sealed class CapturedProductSource
+{
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string ExactImageHash { get; set; } = "";
+    public string PerceptualHash { get; set; } = "";
+    public string ImageEmbedding { get; set; } = "";
+    public string ImageUrl { get; set; } = "";
+    public string SourceUrl { get; set; } = "";
+    public string CanonicalUrl { get; set; } = "";
+    public string Brand { get; set; } = "";
+    public string ProductName { get; set; } = "";
+    public string ProductDataJson { get; set; } = "";
+    public string SourceDomain { get; set; } = "";
+    public DateTimeOffset CapturedAt { get; set; } = DateTimeOffset.UtcNow;
+}

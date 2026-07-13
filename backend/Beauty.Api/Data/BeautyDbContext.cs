@@ -11,6 +11,11 @@ public sealed class BeautyDbContext(DbContextOptions<BeautyDbContext> options) :
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<AiDraft> AiDrafts => Set<AiDraft>();
+    public DbSet<TrustedSourceDomain> TrustedSourceDomains => Set<TrustedSourceDomain>();
+    public DbSet<TrustedProduct> TrustedProducts => Set<TrustedProduct>();
+    public DbSet<TrustedProductImage> TrustedProductImages => Set<TrustedProductImage>();
+    public DbSet<IndexingJob> IndexingJobs => Set<IndexingJob>();
+    public DbSet<CapturedProductSource> CapturedProductSources => Set<CapturedProductSource>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,6 +26,18 @@ public sealed class BeautyDbContext(DbContextOptions<BeautyDbContext> options) :
         modelBuilder.Entity<OrderItem>().Property(item => item.UnitPrice).HasPrecision(12, 2);
         modelBuilder.Entity<Appointment>().HasIndex(appointment => new { appointment.StartAt, appointment.EndAt });
         modelBuilder.Entity<Order>().HasMany(order => order.Items).WithOne().HasForeignKey(item => item.OrderId);
+        modelBuilder.Entity<TrustedSourceDomain>().HasIndex(item => item.Domain).IsUnique();
+        modelBuilder.Entity<TrustedProduct>().HasIndex(item => item.CanonicalUrl).IsUnique();
+        modelBuilder.Entity<TrustedProduct>().HasIndex(item => item.NormalizedKey);
+        modelBuilder.Entity<TrustedProductImage>().HasIndex(item => item.ImageUrl).IsUnique();
+        modelBuilder.Entity<CapturedProductSource>().HasIndex(item => item.ExactImageHash);
+        modelBuilder.Entity<CapturedProductSource>().HasIndex(item => item.CanonicalUrl);
+        modelBuilder.Entity<CapturedProductSource>().HasIndex(item => item.ImageUrl);
+        modelBuilder.Entity<TrustedProductImage>()
+            .HasOne(item => item.Product)
+            .WithMany(item => item.Images)
+            .HasForeignKey(item => item.TrustedProductId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Product>().HasData(
             new Product

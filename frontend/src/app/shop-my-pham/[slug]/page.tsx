@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ApiProduct, fetchProduct, formatVnd } from "@/lib/api";
+import { addCartItem, loadCartItems, notifyCartChanged, saveCartItems } from "@/lib/cart";
 import { productDetails } from "@/lib/productDetails";
 
 export default function ProductDetailPage() {
@@ -31,6 +32,16 @@ export default function ProductDetailPage() {
   }, [slug]);
 
   const image = detail?.detailImage ?? product?.imagePath;
+
+  function addToCart() {
+    if (!product) {
+      return;
+    }
+
+    const items = addCartItem(loadCartItems(), { ...product, imagePath: image ?? product.imagePath }, qty);
+    saveCartItems(items);
+    notifyCartChanged();
+  }
 
   return (
     <>
@@ -76,7 +87,7 @@ export default function ProductDetailPage() {
             </div>
 
             <div className="mt-8 flex gap-4 max-[520px]:grid">
-              <Link className="btn-white border-brand-red text-brand-red" href="/gio-hang">Thêm vào giỏ</Link>
+              <button className="btn-white border-brand-red text-brand-red" onClick={addToCart} type="button" disabled={!product}>Thêm vào giỏ</button>
               <Link className="btn-red" href="/thanh-toan">Mua ngay</Link>
             </div>
           </div>

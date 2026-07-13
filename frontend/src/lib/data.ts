@@ -8,7 +8,7 @@ export const navItems = [
   { href: "/combo-uu-dai", label: "COMBO ƯU ĐÃI", icon: `${iconBase}/01_icon_menu/04_combo_uu_dai.png` },
   { href: "/dat-lich", label: "ĐẶT LỊCH", icon: `${iconBase}/01_icon_menu/05_dat_lich.png` },
   { href: "/tai-khoan", label: "TÀI KHOẢN", icon: `${iconBase}/01_icon_menu/06_tai_khoan.png` },
-  { href: "/gio-hang", label: "GIỎ HÀNG", icon: "/images/products/icon_trang_chu/cut/menu_cart.png", badge: "2" }
+  { href: "/gio-hang", label: "GIỎ HÀNG", icon: "/images/products/icon_trang_chu/cut/menu_cart.png" }
 ];
 
 export const services = [

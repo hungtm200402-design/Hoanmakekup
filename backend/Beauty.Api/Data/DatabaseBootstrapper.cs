@@ -11,7 +11,14 @@ public sealed class DatabaseBootstrapper(IServiceProvider services, ILogger<Data
         {
             using var scope = services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<BeautyDbContext>();
-            await db.Database.EnsureCreatedAsync(cancellationToken);
+            if (db.Database.ProviderName?.Contains("Npgsql", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                await db.Database.MigrateAsync(cancellationToken);
+            }
+            else
+            {
+                await db.Database.EnsureCreatedAsync(cancellationToken);
+            }
             await SeedProductsAsync(db, cancellationToken);
             logger.LogInformation("Database schema is ready.");
         }

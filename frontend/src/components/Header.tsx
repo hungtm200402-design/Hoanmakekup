@@ -2,13 +2,29 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MenuIcon } from "./Icons";
 import { navItems } from "@/lib/data";
+import { getCartSummary, loadCartItems } from "@/lib/cart";
 
 export function Header({ embedded = false, bare = false }: { embedded?: boolean; bare?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  useEffect(() => {
+    function refreshCartQuantity() {
+      setCartQuantity(getCartSummary(loadCartItems()).totalQuantity);
+    }
+
+    refreshCartQuantity();
+    window.addEventListener("storage", refreshCartQuantity);
+    window.addEventListener("hoanmakeup-cart-changed", refreshCartQuantity);
+    return () => {
+      window.removeEventListener("storage", refreshCartQuantity);
+      window.removeEventListener("hoanmakeup-cart-changed", refreshCartQuantity);
+    };
+  }, []);
 
   return (
     <header className={`${embedded ? "absolute left-0 top-0 z-50 w-full px-[1.8%] pt-[1.35%]" : "relative z-50 bg-white pb-5 pt-5 max-[760px]:pb-3 max-[760px]:pt-3"}`}>
@@ -29,7 +45,7 @@ export function Header({ embedded = false, bare = false }: { embedded?: boolean;
                 <Link key={item.label} href={item.href} className={`group relative grid min-w-[86px] place-items-center gap-2 px-2 py-4 text-center text-[13px] font-bold uppercase transition ${active ? "text-brand-red" : "text-brand-ink hover:text-brand-red"}`}>
                   <span className="relative">
                     <img src={item.icon} alt="" className="mx-auto h-[42px] w-[42px] object-contain" />
-                    {item.badge ? <span className="absolute -right-3 -top-2 grid h-6 w-6 place-items-center rounded-full bg-brand-red text-[12px] text-white">{item.badge}</span> : null}
+                    {item.href === "/gio-hang" && cartQuantity > 0 ? <span className="absolute -right-3 -top-2 grid h-6 min-w-6 place-items-center rounded-full bg-brand-red px-1 text-[12px] text-white">{cartQuantity}</span> : null}
                   </span>
                   <span className="whitespace-nowrap">{item.label}</span>
                   {active ? <span className="absolute bottom-0 h-1 w-[78px] rounded-full bg-brand-red" /> : null}

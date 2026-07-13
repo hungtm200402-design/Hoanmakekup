@@ -15,4 +15,10 @@ obj/
 
 backend/Beauty.Api/appsettings.json
 backend/Beauty.Api/appsettings.Development.json
+App_Data/
+backend/Beauty.Api/App_Data/
 backend/Beauty.Api/App_Data/DataProtectionKeys/
+tmp-build/
+frontend/tsconfig.tsbuildinfo
+**/.codex/test-bin/
+.tools/

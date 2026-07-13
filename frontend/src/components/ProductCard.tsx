@@ -1,5 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useRef, useState } from "react";
+import { CartAddedToast } from "@/components/CartAddedToast";
 import { iconBase } from "@/lib/data";
+import { addCartItem, notifyCartChanged, saveCartItems, loadCartItems, type CartProduct } from "@/lib/cart";
 
 type ProductCardProps = {
   id: string;
@@ -10,9 +15,22 @@ type ProductCardProps = {
   image: string;
   brand?: string;
   compact?: boolean;
+  product: CartProduct;
 };
 
-export function ProductCard({ id, name, price, oldPrice, badge, image, brand = "Hoan Doan", compact = false }: ProductCardProps) {
+export function ProductCard({ id, name, price, oldPrice, badge, image, brand = "Hoan Doan", compact = false, product }: ProductCardProps) {
+  const [justAdded, setJustAdded] = useState(false);
+  const noticeTimeoutRef = useRef<number | null>(null);
+
+  function addToCart() {
+    const items = addCartItem(loadCartItems(), { ...product, imagePath: image }, 1);
+    saveCartItems(items);
+    notifyCartChanged({ productName: name });
+    setJustAdded(true);
+    if (noticeTimeoutRef.current) window.clearTimeout(noticeTimeoutRef.current);
+    noticeTimeoutRef.current = window.setTimeout(() => setJustAdded(false), 2400);
+  }
+
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-[12px] border border-[#f5cfd8] bg-white shadow-[0_12px_28px_rgba(217,46,85,0.05)] transition hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(217,46,85,0.12)]">
       {badge ? <span className="absolute left-4 top-4 z-20 rounded-md bg-brand-red px-3 py-1 text-[12px] font-extrabold text-white">{badge}</span> : null}
@@ -43,9 +61,10 @@ export function ProductCard({ id, name, price, oldPrice, badge, image, brand = "
               {price}
               {oldPrice ? <span className="ml-2 text-[12px] font-normal text-brand-muted line-through">{oldPrice}</span> : null}
             </p>
-            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-brand-red">
+            <button onClick={(event) => { event.preventDefault(); addToCart(); }} className="relative grid h-10 w-10 shrink-0 place-items-center rounded-md bg-brand-red" type="button" aria-label={`Thêm ${name} vào giỏ`}>
               <img src={`${iconBase}/03_icon_thao_tac_san_pham/03_them_gio_hang.png`} alt="" className="h-6 w-6 object-contain brightness-0 invert" />
-            </span>
+              {justAdded ? <CartAddedToast productName={name} /> : null}
+            </button>
           </div>
         </div>
       </Link>

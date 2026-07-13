@@ -48,6 +48,7 @@ export function ProductGrid({ limit, columns = "home" }: { limit?: number; colum
           badge={productBadge(product)}
           image={(columns === "home" ? homeProductImageBySlug : shopProductImageBySlug)[product.slug] ?? product.imagePath}
           compact={columns === "home"}
+          product={product}
         />
       ))}
     </div>
